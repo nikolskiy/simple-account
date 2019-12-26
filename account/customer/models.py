@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Customer(models.Model):
-    uuid = models.UUIDField(default=uuid4, editable=False)
+    uuid = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     name = models.CharField(max_length=500)
 
     # values up to 999999.99
