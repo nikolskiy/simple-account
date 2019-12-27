@@ -2,10 +2,19 @@ version: "3.7"
 
 services:
 
-  account:
+  api:
     container_name: account
-    build: ./
+    build: ./account
     image: account:latest
     command: gunicorn -b :8080 main.wsgi
     ports:
       - "8080:8080"
+
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    image: nginx:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - api

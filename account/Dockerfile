@@ -8,13 +8,15 @@ ENV PYTHONUNBUFFERED 1
 # reinstall them everytime requirements.txt changes
 RUN pip3 install Django==3.0.1
 RUN pip3 install djangorestframework==3.11.0
+RUN pip3 install gunicorn==20.0.4
+RUN pip3 install whitenoise==5.0.1
 
 ADD requirements.txt /
 RUN pip3 install -r requirements.txt
 
 # copy project
 RUN mkdir api
-COPY ./account /api
+COPY ./ /api
 
 # set work directory
 WORKDIR /api/
