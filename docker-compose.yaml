@@ -3,11 +3,13 @@ version: "3.7"
 services:
 
   db:
+    restart: on-failure:3
     image: postgres
     networks:
       - postgres
 
   api:
+    restart: on-failure:3
     container_name: account
     build: ./account
     image: account:latest
@@ -24,6 +26,7 @@ services:
       - DOCKERENV
 
   rebalance:
+    restart: on-failure:3
     container_name: rebalance
     build: ./curl
     image: curl:latest
@@ -36,6 +39,7 @@ services:
       - default
 
   nginx:
+    restart: on-failure:3
     container_name: nginx
     build: ./nginx
     image: nginx:latest
