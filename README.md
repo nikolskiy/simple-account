@@ -11,3 +11,10 @@
 4) Methods: POST. URL: http://127.0.0.1/api/subtract/ - Places `hold` on a customer account
 5) Methods: POST. URL: http://127.0.0.1/api/status/ -  Shows customer account status
 6) Methods: GET. URL: http://127.0.0.1/api/ping/ - Service heartbeat 
+
+## Rebalance
+Customer account is rebalanced every 10 min (hold subtracted from balance). It can be forced by navigating to 
+http://127.0.0.1/api/internal/rebalance/
+
+## UI
+All endpoints support simple UI provided by Django Rest Framework.
