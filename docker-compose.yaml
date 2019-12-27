@@ -21,6 +21,18 @@ services:
     depends_on:
       - db
 
+  rebalance:
+    container_name: rebalance
+    image: account:latest
+    command: sh -c "while true;
+                    do python3 manage.py rebalance;
+                    sleep 2; done"
+    networks:
+      - postgres
+    depends_on:
+      - db
+      - api
+
   nginx:
     container_name: nginx
     build: ./nginx
