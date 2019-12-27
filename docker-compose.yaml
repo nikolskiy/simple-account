@@ -6,6 +6,6 @@ services:
     container_name: account
     build: ./
     image: account:latest
-    command: python3 manage.py runserver 0.0.0.0:8080
+    command: gunicorn -b :8080 main.wsgi
     ports:
       - "8080:8080"
