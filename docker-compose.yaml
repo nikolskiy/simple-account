@@ -20,6 +20,8 @@ services:
       - postgres
     depends_on:
       - db
+    environment:
+      - DOCKERENV
 
   rebalance:
     container_name: rebalance
@@ -32,6 +34,9 @@ services:
     depends_on:
       - db
       - api
+
+    environment:
+      - DOCKERENV
 
   nginx:
     container_name: nginx
