@@ -25,17 +25,15 @@ services:
 
   rebalance:
     container_name: rebalance
-    image: account:latest
+    build: ./curl
+    image: curl:latest
     command: sh -c "while true;
-                    do python3 manage.py rebalance;
-                    sleep 2; done"
-    networks:
-      - postgres
+                    do curl nginx/api/internal/rebalance/; echo;
+                    sleep 600; done"
     depends_on:
-      - db
-      - api
-    environment:
-      - DOCKERENV
+      - nginx
+    networks:
+      - default
 
   nginx:
     container_name: nginx

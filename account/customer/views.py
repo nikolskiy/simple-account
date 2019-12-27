@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from time import time
 from decimal import Decimal
 from rest_framework import viewsets, generics, status
 from rest_framework.response import Response
@@ -108,6 +109,19 @@ def ping(request):
         ('description', {})
     ])
     return Response(data, status=data['status'])
+
+
+@api_view()
+def rebalance(request):
+    updated = []
+    t0 = time()
+    for customer in Customer.objects.filter(hold__gt=0):
+        customer.balance -= customer.hold
+        customer.hold = 0
+        customer.save()
+    delta = time() - t0
+    msg = '{} customers rebalanced in {} seconds.'.format(len(updated), delta)
+    return Response(msg, status=status.HTTP_200_OK)
 
 
 add_view = AddView.as_view()

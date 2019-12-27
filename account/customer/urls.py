@@ -12,5 +12,6 @@ urlpatterns = [
     path('ping/', views.ping),
     path('add/', views.add_view),
     path('subtract/', views.subtract_view),
-    path('status/', views.status_view)
+    path('status/', views.status_view),
+    path('internal/rebalance/', views.rebalance)
 ]
