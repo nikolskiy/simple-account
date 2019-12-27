@@ -2,15 +2,24 @@ version: "3.7"
 
 services:
 
+  db:
+    image: postgres
+    networks:
+      - postgres
+
   api:
     container_name: account
     build: ./account
     image: account:latest
-    command: gunicorn -b :8080 main.wsgi
+    command: sh -c "python3 manage.py migrate &&
+                    gunicorn -b :8080 main.wsgi"
     expose:
       - "8080"
     networks:
       - backend
+      - postgres
+    depends_on:
+      - db
 
   nginx:
     container_name: nginx
@@ -26,3 +35,4 @@ services:
 
 networks:
   backend:
+  postgres:
