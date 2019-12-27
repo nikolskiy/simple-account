@@ -13,7 +13,7 @@
 6) Methods: GET. URL: http://127.0.0.1/api/ping/ - Service heartbeat 
 
 ## Rebalance
-Customer account is rebalanced every 10 min (hold subtracted from balance). It can be forced by navigating to 
+Customer accounts are rebalanced every 10 min (hold subtracted from balance). This can be forced by navigating to 
 http://127.0.0.1/api/internal/rebalance/
 
 ## UI
